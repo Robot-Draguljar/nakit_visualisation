@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="panda_with_toolchanger">
+
+  <!-- Include all URDF parts -->
+  <!-- Add these includes BEFORE franka_hand.xacro -->
+  <xacro:include filename="$(find franka_description)/robots/common/franka_arm.xacro"/>
+
+  <xacro:include filename="$(find nakit_visualisation)/urdf/franka_hand.urdf.xacro" />
+  <xacro:include filename="$(find nakit_visualisation)/urdf/robot_side.urdf.xacro" />
+  <xacro:include filename="$(find nakit_visualisation)/urdf/tool_side.urdf.xacro" />
+  <xacro:include filename="$(find nakit_visualisation)/urdf/rs_tool_mount.urdf.xacro" />
+  <xacro:include filename="$(find nakit_visualisation)/urdf/d405.urdf.xacro" />
+  
+  <link name="panda_2_link8"/>
+
+  <!-- Attach everything in a kinematic chain -->
+  <xacro:franka_hand connected_to="rs_tool_mount_link" arm_id="panda"/>
+
+  <joint name="robot_side_joint" type="fixed">
+    <parent link="panda_2_link8" />
+    <child link="robot_side_link" />
+    <!-- <origin xyz="0 0 0.019" rpy="1.571 3.141 0" /> -->
+    <origin xyz="0 0 0.02" rpy="-1.571 0 3.141" />
+  </joint>
+
+  <joint name="tool_side_joint" type="fixed">
+    <parent link="robot_side_link" />
+    <child link="tool_side_link" />
+    <origin xyz="0 -0.019 0" rpy="-1.571 3.141 0" />
+  </joint>
+
+  <joint name="rs_mount_joint" type="fixed">
+    <parent link="tool_side_link" />
+    <child link="rs_tool_mount_link" />
+    <origin xyz="0 0 -0.01" rpy="0 0 0" />
+  </joint>
+
+  <joint name="realsense_joint" type="fixed">
+    <parent link="rs_tool_mount_link" />
+    <child link="rs_link" />
+    <origin xyz="0 0.0755 0" rpy="0 3.141 0" />
+  </joint>
+</robot>

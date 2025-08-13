@@ -1,0 +1,14 @@
+<launch>
+  <!-- Load the combined URDF -->
+  <param name="robot_description" 
+         command="$(find xacro)/xacro '$(find nakit_visualisation)/urdf/umbrella.urdf.xacro'" />
+
+  <!-- Publish joint states (if needed) -->
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+
+  <!-- Publish robot state -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+  <!-- Launch RViz -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find nakit_visualisation)/config/robot.rviz" />
+</launch>

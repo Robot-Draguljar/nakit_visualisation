@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="tool_side">
+
+  <!-- Define properties -->
+  <xacro:property name="mesh_scale" value="0.001 0.001 0.001" /> <!-- Adjust if mm->m conversion needed -->
+
+   
+  <material name="green">
+       <color rgba="0 1 0 1"/>
+  </material>
+
+  <!-- BASE LINK (connects to robot flange) -->
+  <link name="tool_side_link">
+    <visual>
+      <geometry>
+        <!-- <mesh filename="package://nakit_visualisation/meshes/tool_side.stl"  -->
+              <!-- scale="${mesh_scale}"/> -->
+        <mesh filename="package://nakit_visualisation/meshes/tool_side.dae"/>
+      </geometry>
+      <material name="green"/>
+    </visual>
+  </link>
+
+</robot>

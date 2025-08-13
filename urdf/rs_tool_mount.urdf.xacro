@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="rs_tool_mount">
+
+  <!-- Define properties -->
+  <xacro:property name="mesh_scale" value="0.001 0.001 0.001" /> <!-- Adjust if mm->m conversion needed -->
+  
+  <material name="blackish">
+       <color rgba="0.1 0.1 0.1 1"/>
+  </material>
+
+  <!-- BASE LINK (connects to robot flange) -->
+  <link name="rs_tool_mount_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://nakit_visualisation/meshes/rs_gripper_mount.stl" 
+              scale="${mesh_scale}"/>
+      </geometry>
+      <material name="blackish"/>
+    </visual>
+  </link>
+
+</robot>
