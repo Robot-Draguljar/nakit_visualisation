@@ -9,6 +9,9 @@
   <!-- Publish robot state -->
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
 
+  <!-- Publish realsense left imager -->
+  <node pkg="tf" type="static_transform_publisher" name="realsense_base_to_left_imager" args="0.009 0 0.0193 0 0 -3.141 rs_link rs_left_imager 10" />
+
   <!-- Launch RViz -->
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find reconcycle_description)/rviz/nakit.rviz" />
 </launch>
